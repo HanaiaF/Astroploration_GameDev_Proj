@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://2y2bfgiabxsl"]
+
+[ext_resource type="Script" path="res://ironOreCollectable.gd" id="1_vqjet"]
+[ext_resource type="Resource" uid="uid://d30cpld23gum2" path="res://Inventory Item/ironOreCollectable.tres" id="2_kgd0p"]
+[ext_resource type="Texture2D" uid="uid://hrgf30jhjcaf" path="res://Assets/ore14a.png" id="2_sx2wk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fs7xn"]
+radius = 28.9772
+
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_vqjet")
+item = ExtResource("2_kgd0p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24, 24)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_sx2wk")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_fs7xn")
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
